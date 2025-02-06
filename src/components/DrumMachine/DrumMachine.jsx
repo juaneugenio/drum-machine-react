@@ -13,9 +13,8 @@ const DrumMachine = () => {
 	return (
 		<div id="drum-machine" data-testid="drum-machine" role="main" aria-label="Drum Machine">
 			<Display />
-			<div className="pad-container">
+			<div className="pad-container" data-testid="pad-container">
 				{DRUM_PADS?.map((pad) => (
-					// {console.log('👉 L-19 ▶︎▶︎', pad);}
 					<DrumPad key={pad.key} pad={pad} />
 				))}
 			</div>

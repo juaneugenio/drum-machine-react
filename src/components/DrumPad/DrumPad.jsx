@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const DrumPad = ({ pad }) => {
 	const { key, id, audio } = pad;
-  console.log('👉 L-6 ▶︎▶︎', pad);
 
 	return (
 		<div
@@ -14,7 +13,11 @@ const DrumPad = ({ pad }) => {
 			tabIndex={0}
 			aria-label={`Drum pad ${key}`}
 		>
-			<audio className="clip" id={key} src={`/src/assets/sounds/${audio}`} />
+			<audio 
+      className="clip" 
+      id={key} 
+      src={`/src/assets/sounds/${audio}`} 
+      role="audio" />
 			{key}
 		</div>
 	);
