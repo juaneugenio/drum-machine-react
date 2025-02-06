@@ -1,8 +1,18 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+src/
+  components/
+    DrumMachine/          # Main container (User Story #1)
+      index.jsx           # Main component
+      DrumMachine.scss    # Styles
+      DrumMachine.test.jsx# Tests
+    Display/              # Display component (User Story #2)
+      index.jsx
+      Display.scss
+      Display.test.jsx
+    DrumPad/             # Drum pad component (User Stories #3-6)
+      index.jsx
+      DrumPad.scss
+      DrumPad.test.jsx
+  hooks/
+    useKeyPress.js       # For keyboard events (User Story #6)
+  utils/
+    constants.js    # For pad configurations and audio mappings

@@ -1,11 +1,10 @@
 /** @format */
 
-import "./App.css";
-
+import DrumMachine from "./components/DrumMachine/DrumMachine";
 function App() {
 	return (
 		<>
-			<div>Home</div>
+			<DrumMachine />
 		</>
 	);
 }
