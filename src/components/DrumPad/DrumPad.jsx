@@ -1,25 +1,28 @@
 /** @format */
 import PropTypes from "prop-types";
+import { useState } from "react";
 import "./DrumPad.scss";
 import useKeyPressDown from "../../hooks/useKeyPress";
 
 const DrumPad = ({ pad, onPadClick }) => {
+	const [isActive, setIsActive] = useState(false);
 	const { key, id, audio } = pad;
 
 	const handlePadTrigger = () => {
+		setIsActive(true);
 		const audioElement = document.getElementById(key);
 		if (audioElement) {
-			audioElement.currenTime = 0;
+			audioElement.currentTime = 0;
 			audioElement.play();
 			onPadClick(id);
 		}
-		
+		setTimeout(() => setIsActive(false), 100);
 	};
 
 	useKeyPressDown(key, handlePadTrigger);
 	return (
 		<div
-			className="drum-pad"
+			className={`drum-pad ${isActive ? "active" : ""}`}
 			id={id}
 			data-testid={`drum-pad-${key}`}
 			role="button"
