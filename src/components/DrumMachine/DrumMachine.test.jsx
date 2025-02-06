@@ -41,7 +41,7 @@ describe("DrumMachine component", () => {
 			const pads = screen.getAllByRole("button");
 			expect(pads).toHaveLength(9);
 		});
-		it("should mantain correct pad order", () => {
+		it("should maintain correct pad order", () => {
 			const pads = screen.getAllByRole("button");
 			const padKeys = pads.map((pad) => pad.textContent);
 			const expectedOrder = DRUM_PADS.map((pad) => pad.key);

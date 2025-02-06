@@ -1,6 +1,16 @@
-function Display() {
-  return (
-    <div id="display" data-testid="display"></div>
-  )
+/** @format */
+
+import "./Display.scss";
+import PropTypes from "prop-types";
+
+function Display({ text }) {
+	return (
+		<div id="display" data-testid="display">
+			{text}
+		</div>
+	);
 }
-export default Display
+Display.propTypes = {
+	text: PropTypes.string.isRequired,
+};
+export default Display;

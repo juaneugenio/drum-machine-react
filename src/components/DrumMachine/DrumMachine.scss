@@ -1,0 +1,24 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+#drum-machine {
+  @include flex-center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: color.adjust($primary-color, $lightness: 10%);
+  border-radius: $border-radius;
+  // border: 2px solid $secondary-color;
+  width: 400px;
+  box-shadow: 0 4px 6px rgba(25, 1, 45, 0.3);
+}
+
+.pad-container {
+  display: grid;
+  grid-template-columns: repeat(3, $pad-size);
+  gap: $pad-gap;
+  padding: 1rem;
+  background-color: color.adjust($primary-color, $lightness: -5%);
+  border-radius: $border-radius;
+}

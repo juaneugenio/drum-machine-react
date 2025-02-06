@@ -1,0 +1,27 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.drum-pad {
+  @include flex-center;
+  width: $pad-size;
+  height: $pad-size;
+  background-color: $pad-bg-color;
+  border-radius: $border-radius;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  border: 1px solid;
+  border-color: $pad-active-color;
+
+
+  &:hover {
+    background-color: color.adjust($pad-bg-color, $lightness: 10%);
+  }
+
+  &:active {
+    background-color: $pad-active-color;
+    transform: scale(0.95);
+  }
+}
