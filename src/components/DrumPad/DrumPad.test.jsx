@@ -17,9 +17,10 @@
 // Keyboard accessibility
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import DrumPad from "./DrumPad";
+import userEvent from "@testing-library/user-event";
 
 // Mock data for all tests
 const mockPad = {
@@ -33,7 +34,8 @@ describe("Drum Pad component", () => {
 	// Setup and teardown
 	beforeEach(() => {
 		// We pass the mockPad to simulate the props drilling
-		render(<DrumPad pad={mockPad} onPadClick={mockOnClick}/>);
+		render(<DrumPad pad={mockPad} onPadClick={mockOnClick} />);
+		window.HTMLAudioElement.prototype.play = vi.fn();
 	});
 	afterEach(() => {
 		cleanup();
@@ -82,10 +84,53 @@ describe("Drum Pad component", () => {
 			expect(audioElement).toHaveClass("clip");
 		});
 	});
+	// User Stories #5 & #6
+	describe("Interaction Tests (User Stories #5, #6, #7)", () => {
+		it("should trigger audion on click (User Story #5)", async () => {
+			const user = userEvent.setup();
+			const padElement = screen.getByRole("button");
+			const audioElement = screen.getByRole("audio");
 
-  describe("Interaction Tests (Future Stories)", () => {
-		it("should handle click events");
-		it("should handle keyboard events");
+			await user.click(padElement);
+
+			expect(audioElement.play).toHaveBeenCalled();
+			expect(mockOnClick).toHaveBeenCalledWith(mockPad.id);
+		});
+		it("should trigger audio on keyboard press (User Story #6)", async () => {
+			const audioElement = screen.getByRole("audio");
+			fireEvent.keyDown(document, { key: mockPad.key });
+			expect(audioElement.play).toHaveBeenCalled();
+			expect(mockOnClick).toHaveBeenCalledWith(mockPad.id);
+		});
+
+		it("should reset audio before playing", async () => {
+			const user = userEvent.setup();
+			const padElement = screen.getByRole("button");
+			const audioElement = screen.getByRole("audio");
+
+			audioElement.currentTime = 10;
+			await user.click(padElement);
+
+			expect(audioElement.currentTime).toBe(0);
+			expect(audioElement.play).toHaveBeenCalled();
+		});
+
+		it("should handle incorrect key press", () => {
+			const audioElement = screen.getByRole("audio");
+			fireEvent.keyDown(document, { key: "Y" }); // Incorrect key
+			expect(audioElement.play).not.toHaveBeenCalled();
+		});
+
+		it("should handle active state on trigger", async () => {
+			const user = userEvent.setup();
+			const padElement = screen.getByRole("button");
+			
+			await user.click(padElement);
+			expect(padElement).toHaveClass("active");
+			
+			// To check if the active class is removed after the transition
+			await new Promise(resolve => setTimeout(resolve, 150));
+			expect(padElement).not.toHaveClass("active");
+		});
 	});
-
 });
