@@ -9,12 +9,16 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name].[ext]',
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          return `assets/${info[0]}.[hash].${ext}`;
+        },
         chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js',
-        manualChunks: undefined
+        entryFileNames: 'assets/[name].[hash].js'
       }
     }
   },
