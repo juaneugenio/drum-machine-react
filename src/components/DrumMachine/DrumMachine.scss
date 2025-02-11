@@ -22,3 +22,14 @@
   background-color: color.adjust($primary-color, $lightness: -5%);
   border-radius: $border-radius;
 }
+
+@media screen and (max-width: 320px) {
+  #drum-machine {
+    // transform: scale(0.7);
+    width: 100%;
+  }
+  .pad-container{
+    width: 100%;
+  }
+
+}

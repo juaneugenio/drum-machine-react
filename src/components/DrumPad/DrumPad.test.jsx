@@ -16,7 +16,7 @@
 // Click functionality
 // Keyboard accessibility
 
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import DrumPad from "./DrumPad";
@@ -29,20 +29,22 @@ const mockPad = {
 };
 
 describe("Drum Pad component", () => {
+	const mockOnClick = vi.fn();
 	// Setup and teardown
 	beforeEach(() => {
 		// We pass the mockPad to simulate the props drilling
-		render(<DrumPad pad={mockPad} />);
+		render(<DrumPad pad={mockPad} onPadClick={mockOnClick}/>);
 	});
 	afterEach(() => {
 		cleanup();
+		vi.clearAllMocks();
 	});
 
 	// User Story #3 & #4 Tests
 	describe("Basic Rendering (User Story #3)", () => {
 		it('should have className="drum-pad"', () => {
-			const padEllement = screen.getByRole("button");
-			expect(padEllement).toHaveClass("drum-pad");
+			const padElement = screen.getByRole("button");
+			expect(padElement).toHaveClass("drum-pad");
 		});
 
 		it("should have proper ID attribute", () => {
