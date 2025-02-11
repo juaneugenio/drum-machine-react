@@ -2,6 +2,7 @@
 	"name": "drum-machine",
 	"private": true,
 	"author": "Juan C. Eugenio",
+	"homepage": "https://juaneugenio.github.io/drum-machine-react/",
 	"description": "This project is one of the FreeCodeCamp Projects to obtain the Frontend Development Certification.",
 	"version": "0.0.0",
 	"type": "module",
