@@ -30,7 +30,7 @@ const DrumPad = ({ pad, onPadClick }) => {
 			aria-label={`Drum pad ${key}`}
 			onClick={handlePadTrigger}
 		>
-			<audio className="clip" id={key} src={`/src/assets/sounds/${audio}`} role="audio" />
+			<audio className="clip" id={key} src={`${import.meta.env.BASE_URL}${audio}`} role="audio" />
 			{key}
 		</div>
 	);
