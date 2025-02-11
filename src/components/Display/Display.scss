@@ -13,3 +13,62 @@
   margin: 1rem 0;
   // border: 1px solid $secondary-color;
 }
+.display-header {
+  text-align: center;
+  
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .info-details {
+    margin: 0.5rem 0;
+    cursor: pointer;
+  
+    summary {
+      color: $secondary-color;
+      font-size: 0.9rem;
+      transition: opacity 0.3s ease;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+    
+      &::marker {
+        transition: all 0.3s ease;
+      }
+    }
+    
+    .content {
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+    }
+  
+    &[open] {
+      .content {
+        max-height: 100px;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+    
+    p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin: 0;
+      padding: 0.5rem;
+      background-color: color.adjust($primary-color, $lightness: -8%);
+      border-radius: $border-radius;
+    }
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}

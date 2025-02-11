@@ -1,0 +1,64 @@
+/** @format */
+
+@use "sass:color";
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.app-container {
+  @include flex-center;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $primary-color;
+  color: $secondary-color;
+}
+
+.main-content {
+  @include flex-center;
+  flex: 1;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background-color: color.adjust($primary-color, $lightness: -5%);
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.footer-link {
+  color: $secondary-color;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: color.adjust($secondary-color, $lightness: 15%);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $secondary-color;
+    outline-offset: 2px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .footer {
+    padding: 0.75rem;
+    
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
